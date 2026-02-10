@@ -1,0 +1,166 @@
+@font-face {
+    font-family: 'BDSans';
+    src: url('../fonts/BDSans.otf') format('opentype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'BDSans', sans-serif;
+}
+
+body {
+    font-family: 'BDSans', sans-serif;
+}
+
+main {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px;
+}
+
+.logo {
+    position: relative;
+    z-index: 10;
+    margin-bottom: 30px;
+    user-select: none;
+}
+
+.logo img {
+    height: 200px;
+    width: auto;
+    display: block;
+    user-select: none;
+}
+
+.flyer {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    background: transparent;
+    z-index: 5;
+    text-align: center;
+}
+
+.flyer p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333333;
+    text-align: left;
+}
+
+.flyer ul {
+    list-style: none;
+    margin: 20px 0;
+    padding-left: 0;
+}
+
+.flyer li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    padding-left: 0;
+    color: #333333;
+}
+
+.flyer li:before {
+    content: "- ";
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.flyer a {
+    color: #333333;
+    text-decoration: none;
+    font-style: normal;
+}
+
+.flyer a:hover {
+    text-decoration: underline;
+}
+
+.flyer ul li {
+    text-align: left;
+}
+
+.contact {
+    margin-top: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact i {
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1; 
+    color: #333333;
+}
+
+.contact-item span, .contact-item a {
+    font-family: 'BDSans', sans-serif;
+    font-size: 16px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at var(--x) var(--y),
+      rgba(211, 211, 211, 0.5),
+      transparent 250px
+    );
+    opacity: 0;
+    transition: opacity .2s;
+    z-index: -1;
+  }
+  body:hover::before {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        padding: 20px;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .flyer {
+        padding: 20px;
+    }
+
+    .flyer p,
+    .flyer li,
+    .contact-item span,
+    .contact-item a {
+        font-size: 14px;
+    }
+}
