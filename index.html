@@ -7,6 +7,37 @@
     <link href="https://unpkg.com/remixicon/fonts/remixicon.css" rel="stylesheet">
     <title>Salina Schmid</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        #construction-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+            cursor: pointer;
+        }
+        #banner-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background-color: #fff;
+            width: 100%;
+            animation: countdown 7s linear forwards;
+        }
+        @keyframes countdown {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+    </style>
 </head>
 <body>
     <main>
@@ -64,5 +95,22 @@
             </div>
         </article>
     </main>
+
+    <div id="construction-banner">
+        <span>Diese Seite befindet sich noch im Aufbau.</span>
+        <div id="banner-progress"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var banner = document.getElementById("construction-banner");
+            function closeBanner() {
+                banner.style.opacity = "0";
+                setTimeout(function(){ banner.remove(); }, 700);
+            }
+            banner.addEventListener("click", closeBanner);
+            setTimeout(closeBanner, 7000);
+        });
+    </script>
 </body>
 </html>
