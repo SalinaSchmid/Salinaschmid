@@ -10,7 +10,7 @@
     <style>
         #construction-banner {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
             background-color: #333;
@@ -24,6 +24,7 @@
             transition: opacity 0.5s ease;
             cursor: pointer;
         }
+
         #banner-progress {
             position: absolute;
             bottom: 0;
@@ -33,13 +34,24 @@
             width: 100%;
             animation: countdown 7s linear forwards;
         }
+
         @keyframes countdown {
-            from { width: 100%; }
-            to { width: 0%; }
+            from {
+                width: 100%;
+            }
+
+            to {
+                width: 0%;
+            }
         }
     </style>
 </head>
 <body>
+    <div id="construction-banner">
+        <span>Diese Seite befindet sich noch im Aufbau.</span>
+        <div id="banner-progress"></div>
+    </div>
+    <br>
     <main>
         <section class="logo">
             <img src="assets/images/Logo.jpeg" alt="Logo">
@@ -54,13 +66,15 @@
             </p>
 
             <p>
-                Mit echter Empathie begleite ich Sie einfühlsam und achtsam dabei, wieder Klarheit zu gewinnen. 
-                In gemeinsamen Gesprächen schauen wir an, was Sie bewegt, entdecken Ihre Stärken und machen sichtbar, was Ihnen bereits zur Verfügung steht. 
+                Mit echter Empathie begleite ich Sie einfühlsam und achtsam dabei, wieder Klarheit zu gewinnen.
+                In gemeinsamen Gesprächen schauen wir an, was Sie bewegt, entdecken Ihre Stärken und machen sichtbar,
+                was Ihnen bereits zur Verfügung steht.
                 Daraus entstehen Schritte, die sich für Sie stimmig und machbar anfühlen.
             </p>
 
             <p>
-                Mit viel Geduld und auf Augenhöhe biete ich Ihnen einen geschützten Raum, in dem Sie sich gesehen und ernst genommen fühlen dürfen. 
+                Mit viel Geduld und auf Augenhöhe biete ich Ihnen einen geschützten Raum, in dem Sie sich gesehen und
+                ernst genommen fühlen dürfen.
                 Einen Raum, in dem neue Perspektiven entstehen und Vertrauen in den eigenen Weg wachsen kann.
             </p>
 
@@ -79,6 +93,22 @@
                 <li>Oder was Sie sonst gerade beschäftigt</li>
             </ul>
             <br>
+            <h2>Preise</h2>
+            <p>
+                Anlässlich der Neueröffnung offeriere ich Ihnen bis zum 1. August 2026 einen Kennenlernpreis von 100
+                Franken pro Sitzung (Dauer 60 Minuten).
+                Auch für das Erstgespräch (Dauer 60 bis 90 Minuten) bezahlen Sie bis zum 1. August 2026 einen
+                Pauschalpreis von 100 Franken.
+            </p>
+            <p>Ab September 2026 gelten die regulären Preise:</p>
+            <p>
+                Pro Sitzung, sechzig Minuten 130 Franken
+                Verrechnung nach Zeitaufwand. Die erste Sitzung dauert zwischen 60 und 90 Minuten.
+            </p>
+            <p>
+                Sie haben die Möglichkeit, entweder bar oder mit TWINT zu bezahlen.
+            </p>
+            <br>
             <div class="contact">
                 <div class="contact-item">
                     <i class="ri-map-pin-line"></i>
@@ -95,18 +125,12 @@
             </div>
         </article>
     </main>
-
-    <div id="construction-banner">
-        <span>Diese Seite befindet sich noch im Aufbau.</span>
-        <div id="banner-progress"></div>
-    </div>
-
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var banner = document.getElementById("construction-banner");
             function closeBanner() {
                 banner.style.opacity = "0";
-                setTimeout(function(){ banner.remove(); }, 700);
+                setTimeout(function () { banner.remove(); }, 700);
             }
             banner.addEventListener("click", closeBanner);
             setTimeout(closeBanner, 7000);

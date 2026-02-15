@@ -27,6 +27,12 @@ main {
     padding: 40px;
 }
 
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
 .logo {
     position: relative;
     z-index: 10;
