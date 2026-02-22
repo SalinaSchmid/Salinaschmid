@@ -217,14 +217,16 @@ nav {
     .nav__list {
         position: fixed;
         top: 0;
-        right: -50%;
+        right: -70%;
         background-color: #fff;
-        width: 50%;
+        width: 70%;
         height: 100%;
         flex-direction: column;
-        align-items: left;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-start;
         gap: 40px;
+        padding-top: 100px;
+        padding-left: 40px;
         transition: right 0.4s;
         z-index: 100;
         box-shadow: -2px 0 5px rgba(0,0,0,0.1);
