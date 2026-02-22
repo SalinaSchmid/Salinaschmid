@@ -53,6 +53,18 @@
     </div>
     <br>
     <main>
+        <nav>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="#home" class="nav__link"><i class="ri-home-4-line"></i> Home</a></li>
+                <li class="nav__item"><a href="#prices" class="nav__link"><i class="ri-price-tag-2-line"></i> Preise</a></li>
+                <li class="nav__item"><a href="#contact" class="nav__link"><i class="ri-mail-open-line"></i> Kontakt</a></li>
+            </ul>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </nav>
+        
         <section class="logo">
             <img src="assets/images/Logo.jpeg" alt="Logo">
         </section>
@@ -135,6 +147,22 @@
             }
             banner.addEventListener("click", closeBanner);
             setTimeout(closeBanner, 7000);
+        });
+    </script>
+    <script>
+        const navList = document.querySelector('.nav__list');
+        const navToggle = document.querySelector('#nav-toggle');
+
+        navToggle.addEventListener('click', () => {
+            navList.classList.toggle('show-menu');
+            const icon = navToggle.querySelector('i');
+            if (icon.classList.contains('ri-menu-line')) {
+                icon.classList.remove('ri-menu-line');
+                icon.classList.add('ri-close-line');
+            } else {
+                icon.classList.remove('ri-close-line');
+                icon.classList.add('ri-menu-line');
+            }
         });
     </script>
 </body>
