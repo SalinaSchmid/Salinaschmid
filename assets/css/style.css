@@ -134,6 +134,12 @@ h2 {
     margin-top: 40px;
 }
 
+.about-me__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .about-me h2 {
     text-align: center;
     margin-bottom: 30px;
@@ -148,13 +154,14 @@ h2 {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.about-me p {
-    text-align: justify;
-    max-width: 600px;
-}
-
 @media screen and (min-width: 768px) {
     .about-me {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .about-me__content {
         flex-direction: row;
         align-items: flex-start;
         gap: 40px;
@@ -165,12 +172,24 @@ h2 {
         flex-shrink: 0;
     }
 
-    .about-me div {
+    .about-me__text {
         display: flex;
         flex-direction: column;
     }
 
     .about-me h2 {
+        text-align: left;
+    }
+
+    .about-me .next {
+        font-style: italic;
+    }
+
+    .about-me__additional-text p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: #333333;
         text-align: left;
     }
 }
