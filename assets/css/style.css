@@ -310,6 +310,11 @@ nav {
     .nav__toggle {
         display: block;
         font-size: 24px;
+    }
+
+    .close-menu {
+        position: fixed;
+        right: 20px;
         z-index: 101;
     }
 
