@@ -3,224 +3,1043 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Remix Icon CDN -->
     <link href="https://unpkg.com/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <title>Salina Schmid</title>
-    <link rel="stylesheet" href="assets/css/style.css">
     <style>
+        :root {
+            --cream: #faf8f5;
+            --warm-white: #f5f2ee;
+            --stone: #e8e3db;
+            --mid: #b8a99a;
+            --text: #2c2520;
+            --text-soft: #6b5e56;
+            --text-muted: #9e8f86;
+            --accent: #8b7355;
+            --accent-light: #c4a882;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Jost', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background-color: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== CONSTRUCTION BANNER ===== */
         #construction-banner {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #333;
-            color: #fff;
-            padding: 15px;
+            background-color: var(--text);
+            color: var(--cream);
+            padding: 12px 20px;
             text-align: center;
             z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.5s ease;
             cursor: pointer;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.08em;
         }
 
         #banner-progress {
             position: absolute;
             bottom: 0;
             left: 0;
-            height: 4px;
-            background-color: #fff;
+            height: 2px;
+            background-color: var(--accent-light);
             width: 100%;
             animation: countdown 7s linear forwards;
         }
 
         @keyframes countdown {
-            from {
-                width: 100%;
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background-color: var(--cream);
+            border-bottom: 1px solid var(--stone);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            height: 64px;
+            backdrop-filter: blur(8px);
+            background-color: rgba(250, 248, 245, 0.95);
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+            align-items: center;
+            max-width: 100%;
+        }
+
+        .nav__link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: color 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .nav__link i {
+            font-size: 15px;
+            transition: transform 0.25s ease;
+        }
+
+        .nav__link:hover {
+            color: var(--text);
+        }
+
+        .nav__link:hover i {
+            transform: translateY(-1px);
+        }
+
+        .nav__toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 22px;
+            color: var(--text);
+            position: absolute;
+            right: 20px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(250, 248, 245, 0.6) 85%,
+                var(--cream) 100%
+            );
+            pointer-events: none;
+        }
+
+        .hero__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            display: block;
+            transition: transform 8s ease;
+        }
+
+        .hero:hover .hero__image {
+            transform: scale(1.03);
+        }
+
+        /* ===== LOGO ===== */
+        .logo {
+            display: flex;
+            justify-content: center;
+            padding: 48px 20px 32px;
+        }
+
+        .logo img {
+            height: 180px;
+            width: auto;
+            max-width: 100%;
+        }
+
+        /* ===== MAIN CONTENT WRAPPER ===== */
+        .content-wrapper {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        /* ===== INTRO SECTION ===== */
+        .intro {
+            padding: 48px 0 32px;
+            border-top: 1px solid var(--stone);
+        }
+
+        .intro__questions {
+            margin-bottom: 36px;
+        }
+
+        .intro__question {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-soft);
+            line-height: 1.7;
+            margin-bottom: 4px;
+        }
+
+        .intro__body {
+            padding-top: 12px;
+        }
+
+        .intro__body p {
+            font-size: 15.5px;
+            line-height: 1.85;
+            color: var(--text-soft);
+            margin-bottom: 22px;
+            font-weight: 300;
+        }
+
+        /* ===== TOPICS ===== */
+        .topics {
+            margin: 40px 0 56px;
+        }
+
+        .topics__label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .topics__list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border: 1px solid var(--stone);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .topics__item {
+            padding: 14px 22px;
+            font-size: 14.5px;
+            font-weight: 300;
+            color: var(--text-soft);
+            border-bottom: 1px solid var(--stone);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+            line-height: 1.5;
+        }
+
+        .topics__item:last-child {
+            border-bottom: none;
+        }
+
+        .topics__item::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--accent-light);
+            flex-shrink: 0;
+            transition: background-color 0.2s ease;
+        }
+
+        .topics__item:hover {
+            background-color: var(--warm-white);
+            color: var(--text);
+            padding-left: 26px;
+        }
+
+        .topics__item:hover::before {
+            background-color: var(--accent);
+        }
+
+        /* ===== SECTION DIVIDER ===== */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 64px 0 48px;
+        }
+
+        .section-divider__line {
+            flex: 1;
+            height: 1px;
+            background-color: var(--stone);
+        }
+
+        .section-divider__ornament {
+            color: var(--accent-light);
+            font-size: 18px;
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        /* ===== ABOUT ===== */
+        .about {
+            padding: 0 0 16px;
+        }
+
+        .about__header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            margin-bottom: 48px;
+        }
+
+        .about__photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 4px solid var(--warm-white);
+            outline: 1px solid var(--stone);
+            box-shadow: 0 8px 32px rgba(44, 37, 32, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .about__photo:hover {
+            box-shadow: 0 12px 40px rgba(44, 37, 32, 0.15);
+        }
+
+        .about__title-block h2 {
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 14px;
+            letter-spacing: 0.01em;
+        }
+
+        .about__lead {
+            font-family: var(--serif);
+            font-size: 19px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-soft);
+            line-height: 1.75;
+        }
+
+        .about__body p {
+            font-size: 15px;
+            line-height: 1.9;
+            color: var(--text-soft);
+            margin-bottom: 22px;
+            font-weight: 300;
+        }
+
+        /* ===== PRICES ===== */
+        .prices {
+            padding: 0 0 16px;
+        }
+
+        .prices h2 {
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 32px;
+            letter-spacing: 0.01em;
+        }
+
+        .prices__card {
+            background-color: var(--warm-white);
+            border: 1px solid var(--stone);
+            border-radius: 2px;
+            padding: 32px 36px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prices__card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-light), var(--accent));
+        }
+
+        .prices__tag {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .prices__amount {
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .prices__amount span {
+            font-size: 16px;
+            font-family: var(--sans);
+            font-weight: 300;
+            color: var(--text-soft);
+            margin-left: 4px;
+        }
+
+        .prices__detail {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-soft);
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+
+        .prices__note {
+            font-size: 13.5px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.7;
+            padding: 20px 0 0;
+        }
+
+        .prices__payment {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+        }
+
+        .prices__payment i {
+            font-size: 16px;
+            color: var(--mid);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-section {
+            padding: 0 0 16px;
+        }
+
+        .contact-section h2 {
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 32px;
+            letter-spacing: 0.01em;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1px solid var(--stone);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--stone);
+            transition: background-color 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item:hover {
+            background-color: var(--warm-white);
+        }
+
+        .contact-item i {
+            font-size: 18px;
+            color: var(--accent-light);
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+        }
+
+        .contact-item__content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .contact-item__label {
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .contact-item__value {
+            font-size: 14.5px;
+            font-weight: 300;
+            color: var(--text-soft);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a.contact-item:hover .contact-item__value {
+            color: var(--text);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-divider {
+            width: 60px;
+            height: 1px;
+            background-color: var(--stone);
+            margin: 80px auto 24px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 0 20px 48px;
+            font-size: 12px;
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ===== MOBILE NAV ===== */
+        @media screen and (max-width: 768px) {
+            nav {
+                justify-content: flex-end;
+                padding: 0 20px;
+                position: sticky;
+                top: 0;
+                z-index: 95;
             }
 
-            to {
-                width: 0%;
+            .nav__list {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                background-color: rgba(250, 248, 245, 0.95);
+                transform: translateX(-100%);
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1001;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                isolation: isolate;
+            }
+
+            .nav__list::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(44, 37, 32, 0);
+                opacity: 0;
+                transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                pointer-events: none;
+                z-index: -1;
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+            }
+
+            .show-menu {
+                transform: translateX(0) !important;
+            }
+
+            .show-menu::before {
+                background-color: rgba(44, 37, 32, 0.3);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav__link {
+                font-size: 18px;
+                letter-spacing: 0.08em;
+                padding: 12px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav__link i {
+                font-size: 22px;
+            }
+
+            .nav__toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 24px;
+                color: var(--text);
+                position: relative;
+                z-index: 1002;
+                width: 44px;
+                height: 44px;
+                padding: 0;
+                border: none;
+                background: none;
+            }
+
+            .nav__toggle:active {
+                opacity: 0.7;
+            }
+
+            .close-menu {
+                position: relative;
+                z-index: 1002;
+            }
+
+            .hero {
+                height: 280px;
+            }
+
+            .logo {
+                padding: 32px 20px 24px;
+            }
+
+            .logo img {
+                height: 140px;
+            }
+
+            .content-wrapper {
+                padding: 0 20px 60px;
+            }
+
+            .intro__question {
+                font-size: 18px;
+            }
+
+            .about__title-block h2,
+            .prices h2,
+            .contact-section h2 {
+                font-size: 28px;
+            }
+
+            .about__lead {
+                font-size: 16px;
+            }
+
+            .prices__amount {
+                font-size: 30px;
+            }
+
+            .about__header {
+                gap: 24px;
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            nav {
+                padding: 0 40px;
+                background-color: rgba(250, 248, 245, 0.92);
+            }
+
+            .hero {
+                height: 580px;
+            }
+
+            .logo img {
+                height: 200px;
+            }
+
+            .about__header {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 40px;
+            }
+
+            .about__photo {
+                width: 180px;
+                height: 180px;
+                flex-shrink: 0;
+                margin-top: 8px;
+            }
+
+            .about__title-block {
+                flex: 1;
+            }
+        }
+
+        /* ===== SMALL MOBILE (under 480px) ===== */
+        @media screen and (max-width: 479px) {
+            .content-wrapper {
+                padding: 0 16px 60px;
+            }
+
+            nav {
+                padding: 0 16px;
+            }
+
+            .nav__link {
+                font-size: 15px;
+            }
+
+            .intro__question {
+                font-size: 16px;
+            }
+
+            .about__title-block h2,
+            .prices h2,
+            .contact-section h2 {
+                font-size: 24px;
+            }
+
+            .about__photo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .prices__card {
+                padding: 24px 20px;
+            }
+
+            .contact-item {
+                padding: 14px 16px;
+                gap: 12px;
+            }
+        }
+
+        /* ===== CURSOR GLOW (desktop only) ===== */
+        @media (hover: hover) and (pointer: fine) {
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                background: radial-gradient(
+                    circle at var(--x, 50%) var(--y, 50%),
+                    rgba(196, 168, 130, 0.12),
+                    transparent 300px
+                );
+                opacity: 0;
+                transition: opacity 0.3s;
+                z-index: -1;
+            }
+            body:hover::before {
+                opacity: 1;
             }
         }
     </style>
 </head>
 <body>
-    <div id="construction-banner">
-        <span>Diese Seite befindet sich noch im Aufbau.</span>
-        <div id="banner-progress"></div>
+
+    <!-- Navigation -->
+    <nav id="home">
+        <ul class="nav__list">
+            <li><a href="#home-taker" class="nav__link"><i class="ri-home-4-line"></i> Home</a></li>
+            <li><a href="#about" class="nav__link"><i class="ri-user-6-line"></i> Über mich</a></li>
+            <li><a href="#prices" class="nav__link"><i class="ri-price-tag-2-line"></i> Preise</a></li>
+            <li><a href="#contact" class="nav__link"><i class="ri-mail-open-line"></i> Kontakt</a></li>
+        </ul>
+        <div class="nav__toggle" id="nav-toggle"><i class="ri-menu-line"></i></div>
+    </nav>
+
+    <!-- Hero Image -->
+    <div class="hero">
+        <img src="assets/images/hero.jpeg" alt="Hero Image" class="hero__image">
     </div>
-    <br>
-    <main>
-        <nav>
-            <ul class="nav__list">
-                <li class="nav__item"><a href="#home" class="nav__link"><i class="ri-home-4-line"></i> Home</a></li>
-                <li class="nav__item"><a href="#about" class="nav__link"><i class="ri-user-6-line"></i> Über mich</a></li>
-                <li class="nav__item"><a href="#prices" class="nav__link"><i class="ri-price-tag-2-line"></i> Preise</a></li>
-                <li class="nav__item"><a href="#contact" class="nav__link"><i class="ri-mail-open-line"></i> Kontakt</a></li>
-            </ul>
 
-            <div class="nav__toggle" id="nav-toggle">
-                <i class="ri-menu-line"></i>
+    <div id="home-taker"></div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+
+        <!-- Intro Questions + Body -->
+        <section class="intro reveal">
+            <div class="intro__questions">
+                <p class="intro__question">Kennen Sie das Gefühl, innerlich festzustecken?</p>
+                <p class="intro__question">Vielleicht drehen sich Ihre Gedanken immer wieder im Kreis?</p>
+                <p class="intro__question">Es fällt Ihnen schwer sich zu entscheiden?</p>
+                <p class="intro__question">Sie möchten etwas verändern und wissen nicht wie?</p>
             </div>
-        </nav>
-
-        <div id="home"></div>
-        
-        <section class="logo">
-            <img src="assets/images/Logo.jpeg" alt="Logo">
+            <div class="intro__body">
+                <p>
+                    Mit echter Empathie begleite ich Sie einfühlsam und achtsam dabei, wieder Klarheit zu gewinnen.
+                    In gemeinsamen Gesprächen schauen wir an, was Sie bewegt, entdecken Ihre Stärken und machen sichtbar,
+                    was Ihnen bereits zur Verfügung steht.
+                    Daraus entstehen Schritte, die sich für Sie stimmig und machbar anfühlen.
+                </p>
+                <p>
+                    Mit viel Geduld und auf Augenhöhe biete ich Ihnen einen geschützten Raum, in dem Sie sich gesehen und
+                    ernst genommen fühlen dürfen.
+                    Einen Raum, in dem neue Perspektiven entstehen und Vertrauen in den eigenen Weg wachsen kann.
+                </p>
+                <p>Ich freue mich darauf, Sie kennenzulernen und ein Stück auf Ihrem Weg zu begleiten.</p>
+            </div>
         </section>
 
-        <article class="flyer">
-            <p>
-                Kennen Sie das Gefühl, innerlich festzustecken?
-                Vielleicht drehen sich Ihre Gedanken immer wieder im Kreis?
-                Es fällt Ihnen schwer sich zu entscheiden?
-                Sie möchten etwas verändern und wissen nicht wie?
-            </p>
-
-            <p>
-                Mit echter Empathie begleite ich Sie einfühlsam und achtsam dabei, wieder Klarheit zu gewinnen.
-                In gemeinsamen Gesprächen schauen wir an, was Sie bewegt, entdecken Ihre Stärken und machen sichtbar,
-                was Ihnen bereits zur Verfügung steht.
-                Daraus entstehen Schritte, die sich für Sie stimmig und machbar anfühlen.
-            </p>
-
-            <p>
-                Mit viel Geduld und auf Augenhöhe biete ich Ihnen einen geschützten Raum, in dem Sie sich gesehen und
-                ernst genommen fühlen dürfen.
-                Einen Raum, in dem neue Perspektiven entstehen und Vertrauen in den eigenen Weg wachsen kann.
-            </p>
-
-            <p>
-                Ich freue mich darauf, Sie kennenzulernen und ein Stück auf Ihrem Weg zu begleiten.
-            </p>
-
-            <p>Mögliche Themen:</p>
-            <ul>
-                <li>Festgefahrene Situationen neu betrachten</li>
-                <li>Alte Muster durchbrechen</li>
-                <li>Besser mit Stress umgehen</li>
-                <li>Entscheidungen treffen oder Klarheit gewinnen</li>
-                <li>Ziele entwickeln und umsetzen</li>
-                <li>Innere Ressourcen aktivieren</li>
-                <li>Oder was Sie sonst gerade beschäftigt</li>
+        <!-- Topics -->
+        <section class="topics reveal">
+            <p class="topics__label">Mögliche Themen</p>
+            <ul class="topics__list">
+                <li class="topics__item">Festgefahrene Situationen neu betrachten</li>
+                <li class="topics__item">Alte Muster durchbrechen</li>
+                <li class="topics__item">Besser mit Stress umgehen</li>
+                <li class="topics__item">Entscheidungen treffen oder Klarheit gewinnen</li>
+                <li class="topics__item">Ziele entwickeln und umsetzen</li>
+                <li class="topics__item">Innere Ressourcen aktivieren</li>
+                <li class="topics__item">Oder was Sie sonst gerade beschäftigt</li>
             </ul>
-            <br>
+        </section>
 
-            <div id="about"></div>
-            <section class="about-me">
-                <div class="about-me__content">
-                    <img src="assets/images/salina.JPG" alt="Salina Schmid" class="about-me__photo">
-                    <div class="about-me__text">
-                        <h2>Über mich</h2>
-                        <p class="next">
-                            Ich glaube daran, dass jeder Mensch bereits die Ressourcen in sich trägt, um Veränderungen zu gestalten, 
-                            Klarheit zu finden und den eigenen Weg zu gehen. 
-                        </p>
-                    </div>
-                </div>
-                <div class="about-me__additional-text">
-                    <p>
-                        Schon früh in meinen Leben stellte ich fest, dass mir Menschen ihre Lebensgeschichte erzählten, ihre Probleme anvertrauten oder mich um Rat fragten. 
-                        In meinen jungen Jahren hatte ich das Verständnis, den Menschen mit einem passenden Rat zu helfen. 
-                        Doch mit zunehmendem Alter und während meiner Ausbildung machte ich die Erfahrung, dass die Lösung zu unseren Problemen bereits in uns schlummert. 
-                        Um den Zugang zu ihr zu finden, braucht es einen geschützten Raum, neue Perspektiven und die richtigen Fragen. 
+        <!-- Divider -->
+        <div class="section-divider reveal">
+            <div class="section-divider__line"></div>
+            <span class="section-divider__ornament">✦</span>
+            <div class="section-divider__line"></div>
+        </div>
+
+        <!-- About -->
+        <section class="about reveal" id="about">
+            <div class="about__header">
+                <img src="assets/images/sepia.jpg" alt="Salina Schmid" class="about__photo">
+                <div class="about__title-block">
+                    <h2>ÜBER MICH</h2>
+                    <p class="about__lead">
+                        Ich glaube daran, dass jeder Mensch bereits die Ressourcen in sich trägt,
+                        um Veränderungen zu gestalten, Klarheit zu finden und den eigenen Weg zu gehen.
                     </p>
-
-                    <p>
-                        Als Beraterin/Coach begleite ich Menschen dabei, ihre Ziele zu klären, innere Blockaden zu lösen und konkrete Schritte in Richtung eines stimmigen Lebens zu entwickeln. 
-                        Meine Arbeit ist lösungsorientiert, wertschätzend und praxisnah. Im Mittelpunkt steht dabei immer der Mensch mit seiner eigenen Geschichte. 
-                    </p>
-
-                    <p>
-                        Mir ist wichtig, dass Coaching nicht kompliziert, sondern verständlich, wirksam und alltagstauglich ist. 
-                        Ich arbeite mit Klarheit, Empathie und auf Augenhöhe. 
-                        So können meine Kundinnen und Kunden auch schwierige Themen in einem sicheren Rahmen anschauen. 
-                    </p>
-
-                    <p>
-                        Neben meiner fachlichen Weiterbildung zur systemisch-lösungsorientierten Kurzzeitberaterin/Coach bringe ich Lebenserfahrung, Neugier und echtes Interesse an Menschen mit. 
-                        Als Mutter von fast erwachsenen Zwillingen, Ehefrau und aufgrund meiner beruflichen Erfahrung in verschiedenen Bereichen weiss ich, 
-                        wie komplex das Leben sein kann, wie herausfordernd Veränderungsprozesse sein können und wie kraftvoll es ist, sie nicht allein gehen zu müssen.
-                    </p>
-
-                    <p>
-                        Veränderung ist möglich. In kleinen Schritten, im eigenen Tempo und auf eine Weise, die wirklich zu Ihnen passt. 
-                        Ich freue mich, Sie persönlich kennenzulernen. 
-                    </p>
-                </div>
-            </section>
-            <br>
-
-            <div id="prices"></div>
-            <h2>Preise</h2>
-            <p>
-                Anlässlich der Neueröffnung offeriere ich Ihnen bis zum 1. August 2026 einen Kennenlernpreis von 100
-                Franken pro Sitzung (Dauer 60 Minuten).
-                Auch für das Erstgespräch (Dauer 60 bis 90 Minuten) bezahlen Sie bis zum 1. August 2026 einen
-                Pauschalpreis von 100 Franken.
-            </p>
-            <p>Ab September 2026 gelten die regulären Preise:</p>
-            <p>
-                Pro Sitzung, sechzig Minuten 130 Franken
-                Verrechnung nach Zeitaufwand. Die erste Sitzung dauert zwischen 60 und 90 Minuten.
-            </p>
-            <p>
-                Sie haben die Möglichkeit, entweder bar oder mit TWINT zu bezahlen.
-            </p>
-            <br>
-            <div id="contact"></div>
-            <h2>Kontakt</h2>
-            <div class="contact">
-                <div class="contact-item">
-                    <i class="ri-map-pin-line"></i>
-                    <span>Sarmenstorferstrasse 4, 5615 Fahrwangen</span>
-                </div>
-                <div class="contact-item">
-                    <i class="ri-mail-send-line"></i>
-                    <a href="mailto:info@salinaschmid.ch">info@salinaschmid.ch</a>
-                </div>
-                <div class="contact-item">
-                    <i class="ri-phone-line"></i>
-                    <a href="tel:+41793439886">+41 79 343 98 86</a>
                 </div>
             </div>
-        </article>
+            <div class="about__body">
+                <p>
+                    Schon früh in meinen Leben stellte ich fest, dass mir Menschen ihre Lebensgeschichte erzählten, ihre Probleme anvertrauten oder mich um Rat fragten.
+                    In meinen jungen Jahren hatte ich das Verständnis, den Menschen mit einem passenden Rat zu helfen.
+                    Doch mit zunehmendem Alter und während meiner Ausbildung machte ich die Erfahrung, dass die Lösung zu unseren Problemen bereits in uns schlummert.
+                    Um den Zugang zu ihr zu finden, braucht es einen geschützten Raum, neue Perspektiven und die richtigen Fragen.
+                </p>
+                <p>
+                    Als Beraterin/Coach begleite ich Menschen dabei, ihre Ziele zu klären, innere Blockaden zu lösen und konkrete Schritte in Richtung eines stimmigen Lebens zu entwickeln.
+                    Meine Arbeit ist lösungsorientiert, wertschätzend und praxisnah. Im Mittelpunkt steht dabei immer der Mensch mit seiner eigenen Geschichte.
+                </p>
+                <p>
+                    Mir ist wichtig, dass Coaching nicht kompliziert, sondern verständlich, wirksam und alltagstauglich ist.
+                    Ich arbeite mit Klarheit, Empathie und auf Augenhöhe.
+                    So können meine Kundinnen und Kunden auch schwierige Themen in einem sicheren Rahmen anschauen.
+                </p>
+                <p>
+                    Neben meiner fachlichen Weiterbildung zur systemisch-lösungsorientierten Kurzzeitberaterin bringe ich Lebenserfahrung, Neugier und echtes Interesse an Menschen mit.
+                    Als Mutter von fast erwachsenen Zwillingen, Ehefrau und aufgrund meiner beruflichen Erfahrung in verschiedenen Bereichen weiss ich,
+                    wie komplex das Leben sein kann, wie herausfordernd Veränderungsprozesse sein können und wie kraftvoll es ist, sie nicht allein gehen zu müssen.
+                </p>
+                <p>
+                    Veränderung ist möglich. In kleinen Schritten, im eigenen Tempo und auf eine Weise, die wirklich zu Ihnen passt.
+                    Ich freue mich, Sie persönlich kennenzulernen.
+                </p>
+            </div>
+        </section>
 
-        <div class="dividing-line"></div>
+        <!-- Divider -->
+        <div class="section-divider reveal">
+            <div class="section-divider__line"></div>
+            <span class="section-divider__ornament">✦</span>
+            <div class="section-divider__line"></div>
+        </div>
 
-        <footer>
-            <p>&copy; 2026 Salina Schmid. Alle Rechte vorbehalten.</p>
-        </footer>
-    </main>
+        <!-- Prices -->
+        <section class="prices reveal" id="prices">
+            <h2>PREISE</h2>
+
+            <div class="prices__card">
+                <p class="prices__tag">Kennenlernpreis · bis 1. August 2026</p>
+                <p class="prices__amount">CHF 100<span>/ Sitzung</span></p>
+                <p class="prices__detail">
+                    Anlässlich der Neueröffnung — gilt für alle Sitzungen (60 Min.) sowie das Erstgespräch (60–90 Min.).
+                </p>
+            </div>
+
+            <div class="prices__card">
+                <p class="prices__tag">Reguläre Preise · ab September 2026</p>
+                <p class="prices__amount">CHF 130<span>/ Sitzung</span></p>
+                <p class="prices__detail">
+                    Verrechnung nach Zeitaufwand. Die erste Sitzung dauert zwischen 60 und 90 Minuten.
+                </p>
+            </div>
+
+            <div class="prices__payment">
+                <i class="ri-bank-card-line"></i>
+                <span>Barzahlung oder TWINT</span>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="section-divider reveal">
+            <div class="section-divider__line"></div>
+            <span class="section-divider__ornament">✦</span>
+            <div class="section-divider__line"></div>
+        </div>
+
+        <!-- Contact -->
+        <section class="contact-section reveal" id="contact">
+            <h2>KONTAKT</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="ri-map-pin-line"></i>
+                    <div class="contact-item__content">
+                        <span class="contact-item__label">Adresse</span>
+                        <span class="contact-item__value">Sarmenstorferstrasse 4, 5615 Fahrwangen</span>
+                    </div>
+                </div>
+                <a href="mailto:info@salinaschmid.ch" class="contact-item">
+                    <i class="ri-mail-send-line"></i>
+                    <div class="contact-item__content">
+                        <span class="contact-item__label">E-Mail</span>
+                        <span class="contact-item__value">info@salinaschmid.ch</span>
+                    </div>
+                </a>
+                <a href="tel:+41793439886" class="contact-item">
+                    <i class="ri-phone-line"></i>
+                    <div class="contact-item__content">
+                        <span class="contact-item__label">Telefon</span>
+                        <span class="contact-item__value">+41 79 343 98 86</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-divider"></div>
+    <footer>
+        <p>&copy; 2026 Salina Schmid &nbsp;·&nbsp; Alle Rechte vorbehalten.</p>
+    </footer>
+
     <script>
+        // Banner
         document.addEventListener("DOMContentLoaded", function () {
-            var banner = document.getElementById("construction-banner");
+            const banner = document.getElementById("construction-banner");
             function closeBanner() {
                 banner.style.opacity = "0";
-                setTimeout(function () { banner.remove(); }, 700);
+                banner.style.transform = "translateY(-100%)";
+                setTimeout(() => banner.remove(), 700);
             }
             banner.addEventListener("click", closeBanner);
             setTimeout(closeBanner, 7000);
         });
-    </script>
-    <script>
+
+        // Mobile nav toggle
         const navList = document.querySelector('.nav__list');
         const navToggle = document.querySelector('#nav-toggle');
+        
+        function closeMenu() {
+            navList.classList.remove('show-menu');
+            navToggle.classList.remove('close-menu');
+            const icon = navToggle.querySelector('i');
+            icon.classList.add('ri-menu-line');
+            icon.classList.remove('ri-close-line');
+        }
 
-        navToggle.addEventListener('click', () => {
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navList.classList.toggle('show-menu');
             navToggle.classList.toggle('close-menu');
             const icon = navToggle.querySelector('i');
-            if (icon.classList.contains('ri-menu-line')) {
-                icon.classList.remove('ri-menu-line');
-                icon.classList.add('ri-close-line');
-            } else {
-                icon.classList.remove('ri-close-line');
-                icon.classList.add('ri-menu-line');
+            icon.classList.toggle('ri-menu-line');
+            icon.classList.toggle('ri-close-line');
+        });
+
+        // Close nav on link click (mobile)
+        document.querySelectorAll('.nav__link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeMenu();
+            });
+        });
+
+        // Close menu when clicking on backdrop (on mobile)
+        navList.addEventListener('click', (e) => {
+            if (e.target === navList) {
+                closeMenu();
             }
+        });
+
+        // Close menu on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navList.classList.contains('show-menu')) {
+                closeMenu();
+            }
+        });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+
+        // Cursor glow
+        document.addEventListener('mousemove', e => {
+            document.body.style.setProperty('--x', e.clientX + 'px');
+            document.body.style.setProperty('--y', e.clientY + 'px');
         });
     </script>
 </body>
